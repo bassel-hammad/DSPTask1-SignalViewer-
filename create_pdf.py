@@ -2,6 +2,12 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Image, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet
 
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Image, Table, TableStyle
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import utils
+
+
 def generate_pdf(images, statistics, output_filename):
     # Create a list to store the elements of the PDF document
     elements = []
@@ -11,8 +17,22 @@ def generate_pdf(images, statistics, output_filename):
 
     # Iterate over the images and corresponding statistics
     for image_index, (image_filename, plot_stats) in enumerate(zip(images, statistics)):
-        # Add the image to the PDF
-        image = Image(image_filename)
+        # Open the image and get its original size
+        img = utils.ImageReader(image_filename)
+        img_width, img_height = img.getSize()
+
+        # Calculate the aspect ratio to maintain proportions
+        aspect_ratio = img_width / float(img_height)
+
+        # Define a maximum width for the image in the PDF
+        max_width = 400  # You can adjust this value as needed
+
+        # Calculate the corresponding height to maintain aspect ratio
+        img_width = min(img_width, max_width)
+        img_height = img_width / aspect_ratio
+
+        # Add the image to the PDF with specified width and height
+        image = Image(image_filename, width=img_width, height=img_height)
         elements.append(image)
 
         # Create a table for the current image's statistics

@@ -17,6 +17,7 @@ from PyQt5.QtGui import QColor
 import pandas as pd
 from custom_slider import CustomSlider
 from create_pdf import generate_pdf
+#from fpdf import FPDF
 
 
 class Ui_MainWindow(object):
@@ -456,6 +457,7 @@ class Ui_MainWindow(object):
             self.canvas_1.rewind_signal(self.plot_box_1.currentIndex())
         else:
             self.canvas_2.rewind_signal(self.plot_box_2.currentIndex())
+
     def take_snapshot(self):
         if(self.current_canvas==self.canvas_1):
             snapshot = self.canvas_1.grab()
@@ -466,10 +468,9 @@ class Ui_MainWindow(object):
         snapshot.save("snapshot"+str(len(self.lst_snapshots_img))+".png")
         self.lst_snapshots_img.append("snapshot"+str(len(self.lst_snapshots_img))+".png")
         self.lst_snapshots_statistics.append(statistics)
+
     def make_pdf(self):
-        generate_pdf(self.lst_snapshots_img,self.lst_snapshots_statistics,"snapshots.pdf")
-
-
+        generate_pdf(self.lst_snapshots_img, self.lst_snapshots_statistics, "snapshots.pdf")
 
     def increase_counter_1(self):
         # Increment the counter and update the display

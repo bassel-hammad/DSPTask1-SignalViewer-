@@ -196,7 +196,7 @@ class MplCanvas(FigureCanvas):
         for Data in self.lst_DataPlotted:
             #if(Data<self.window_size):
                # return
-            if( Data + 50*shift_by >500):
+            if( Data + 50*shift_by >self.window_size):
                 self.lst_DataPlotted[i]= Data + 50*shift_by
             #self.axes.get_xlim
             i=i+1
