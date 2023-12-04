@@ -33,7 +33,7 @@ class MplCanvas(FigureCanvas):
         self.axes.grid(True)
         self.window_size = 600  # Set the desired window size
         #self.window_size => determines the number of data points to be displayed on the plot.
-        self.shift_amount = 10  # Set the number of data points to shift the window
+        self.shift_amount = 5  # Set the number of data points to shift the window
         self.y_min = None
         self.y_max = None
         self.y_min_original = None
@@ -95,7 +95,7 @@ class MplCanvas(FigureCanvas):
         self.axes.set_ylim(self.y_min, self.y_max)
         for i in range(len(self.lst_df)):
             if self.lst_DataPlotted[i] >= len(self.lst_df[i]):
-                self.lst_DataPlotted[i]=500# zero
+                self.lst_DataPlotted[i]=self.window_size
             self.lst_DataPlotted[i]+= self.shift_amount
         self.update_data()
         #self.update_xlimits()
