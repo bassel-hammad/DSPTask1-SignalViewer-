@@ -185,23 +185,16 @@ class MplCanvas(FigureCanvas):
         if(self.played):
             self.timer.start(self.time_of_drawing)
 
-    def change_color(self,string_color):
-        return
-        self.line.set_color(string_color)
 
     def horizontal_scroll(self,shift_by):
         if(self.is_linked_with_canvas):
             self.linked_canvas.horizontal_scroll(shift_by)
         i=0
         for Data in self.lst_DataPlotted:
-            #if(Data<self.window_size):
-               # return
             if( Data + 50*shift_by >self.window_size):
                 self.lst_DataPlotted[i]= Data + 50*shift_by
-            #self.axes.get_xlim
             i=i+1
         self.update_data()
-        #self.update_xlimits()
         self.update_canvas()
     def vertical_scroll(self,i):
         if(self.is_linked_with_canvas):
@@ -249,7 +242,7 @@ class MplCanvas(FigureCanvas):
     
     def change_color_of_siganl(self,i,the_color):
         self.lst_colors[i]=the_color
-        self.lst_line[i].set_color("black")
+        #self.lst_line[i].set_color("black")
         if(not self.played):
             self.update_canvas()
         
