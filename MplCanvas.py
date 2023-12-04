@@ -38,7 +38,7 @@ class MplCanvas(FigureCanvas):
         self.y_max = None
         self.y_min_original = None
         self.y_max_original = None
-        self.speed =200
+        self.time_of_drawing =200
         self.zoomed_by=1.0
 
     def upload_data(self, df):
@@ -66,7 +66,7 @@ class MplCanvas(FigureCanvas):
         self.timer = QtCore.QTimer()
         if(self.played):
             self.timer.timeout.connect(self.upgrade_canvas)
-        self.timer.start(self.speed)  # Update plot every 100 milliseconds
+        self.timer.start(self.time_of_drawing)  # Update plot every 100 milliseconds
 
     def update_canvas(self): 
         # is responsible for updating the canvas with [(drawing)] the latest data 
@@ -142,7 +142,7 @@ class MplCanvas(FigureCanvas):
     def start_timer(self):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.upgrade_canvas)
-        self.timer.start(self.speed)  # Update plot every 100 milliseconds
+        self.timer.start(self.time_of_drawing)  # Update plot every 100 milliseconds
 
     def stop_timer(self):
         if self.timer is not None:
@@ -174,16 +174,16 @@ class MplCanvas(FigureCanvas):
     def increase_speed(self):
         if(self.is_linked_with_canvas):
             self.linked_canvas.increase_speed()
-        self.speed = float(self.speed * 0.8)
+        self.time_of_drawing = float(self.time_of_drawing * 0.8)
         if(self.played):
-            self.timer.start(self.speed)
+            self.timer.start(self.time_of_drawing)
 
     def decrease_speed(self):
         if(self.is_linked_with_canvas):
             self.linked_canvas.decrease_speed()
-        self.speed=float(self.speed*1.25)
+        self.time_of_drawing=float(self.time_of_drawing*1.25)
         if(self.played):
-            self.timer.start(self.speed)
+            self.timer.start(self.time_of_drawing)
 
     def change_color(self,string_color):
         return
@@ -275,8 +275,8 @@ class MplCanvas(FigureCanvas):
         canvas_2.is_linked_with_canvas=False
         self.linked_canvas=canvas_2
         #canvas_2.linked_canvas=self
-        canvas_2.speed=self.speed
-        canvas_2.timer.start(self.speed)
+        canvas_2.time_of_drawing=self.time_of_drawing
+        canvas_2.timer.start(self.time_of_drawing)
         canvas_2.y_min=canvas_2.y_min_original+(self.y_min_original-self.y_min)
         canvas_2.y_max=canvas_2.y_max_original+(self.y_max_original-self.y_max)
         self.update_data()
