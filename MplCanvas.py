@@ -242,7 +242,6 @@ class MplCanvas(FigureCanvas):
     
     def change_color_of_siganl(self,i,the_color):
         self.lst_colors[i]=the_color
-        #self.lst_line[i].set_color("black")
         if(not self.played):
             self.update_canvas()
         
