@@ -2,7 +2,7 @@
 
 A small PyQt5 desktop app for viewing and interacting with time-series signal data from CSV files. It supports two viewing channels, basic playback controls, plot customization, snapshots, and PDF report export.
 
-> Placeholder: add a demo GIF here
+Demo video: [Recording 2026-04-05 194257.mp4](./assets-demo.mp4)
 
 ## Overview
 
