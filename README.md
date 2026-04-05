@@ -20,7 +20,7 @@ Current capabilities:
 - Capture plot snapshots
 - Export snapshots and statistics to a PDF report
 
-> Placeholder: add an application screenshot here
+![UI Screenshot](image.png)
 
 ## Requirements
 
